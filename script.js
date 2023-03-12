@@ -4,7 +4,7 @@
 // @match        https://moodle.hs-esslingen.de/moodle/*
 // @version      1.0.0
 // @description  Extension to add a course menu on the left side of each page for HS-Esslingen's moodle.
-// @author       HS-Esslingen-FSIT && Heinrian
+// @author       HSE-Codes && Heinrian
 // @icon         https://moodle.hs-esslingen.de/moodle/theme/image.php/boost/theme/1676389471/favicon
 // @grant        GM_log
 // @grant        GM_xmlhttpRequest
