@@ -2,7 +2,7 @@
 // @name         Moodle-menu Extension
 // @namespace    http://tampermonkey.net/
 // @match        https://moodle.hs-esslingen.de/moodle/*
-// @version      1.0.0
+// @version      1.0.1
 // @description  Extension to add a course menu on the left side of each page for HS-Esslingen's moodle.
 // @author       HSE-Codes && Heinrian
 // @icon         https://moodle.hs-esslingen.de/moodle/theme/image.php/boost/theme/1676389471/favicon
@@ -13,54 +13,54 @@
 (function() {
     'use strict';
 
-    function createCurseMenu() {
-        let divCurseMenu = document.createElement("div")
-        divCurseMenu.style.backgroundColor = "#f8f9fa"
-        divCurseMenu.style.width = "100%"
-        divCurseMenu.style.height = "calc(100vh - 60px)"
-        divCurseMenu.style.marginTop = "60px"
-        divCurseMenu.style.display = "flex"
-        divCurseMenu.style.flexDirection = "column"
-        divCurseMenu.style.borderRight = "thin solid lightgrey"
+    function createCourseMenu() {
+        let divCourseMenu = document.createElement("div")
+        divCourseMenu.style.backgroundColor = "#f8f9fa"
+        divCourseMenu.style.width = "100%"
+        divCourseMenu.style.height = "calc(100vh - 60px)"
+        divCourseMenu.style.marginTop = "60px"
+        divCourseMenu.style.display = "flex"
+        divCourseMenu.style.flexDirection = "column"
+        divCourseMenu.style.borderRight = "thin solid lightgrey"
 
-        let divCurseMenuHead = document.createElement("div")
-        divCurseMenuHead.style.width = "100%"
-        divCurseMenuHead.style.textAlign = "center"
-        divCurseMenuHead.style.borderBottom = "thin solid lightgrey"
+        let divCourseMenuHead = document.createElement("div")
+        divCourseMenuHead.style.width = "100%"
+        divCourseMenuHead.style.textAlign = "center"
+        divCourseMenuHead.style.borderBottom = "thin solid lightgrey"
 
-        let h1CurseMenuHeadContent = document.createElement("h1")
-        h1CurseMenuHeadContent.textContent = "Meine Kurse"
-        h1CurseMenuHeadContent.style.fontWeight = "bold"
+        let h1CourseMenuHeadContent = document.createElement("h1")
+        h1CourseMenuHeadContent.textContent = "Meine Kurse"
+        h1CourseMenuHeadContent.style.fontWeight = "bold"
 
-        divCurseMenuHead.appendChild(h1CurseMenuHeadContent)
-        divCurseMenu.appendChild(divCurseMenuHead)
+        divCourseMenuHead.appendChild(h1CourseMenuHeadContent)
+        divCourseMenu.appendChild(divCourseMenuHead)
 
-        function appendCurses(jsonResponse) {
+        function appendCourses(jsonResponse) {
 
             for (const cours of jsonResponse.data.courses) {
-                let divCurse = document.createElement("div")
-                divCurse.style.width = "100%"
-                divCurse.style.padding = "10px 0"
-                divCurse.style.borderBottom = "1px solid lightgrey"
-                divCurse.onmouseout = () => {
-                    divCurse.style.backgroundColor = "transparent"
+                let divCourse = document.createElement("div")
+                divCourse.style.width = "100%"
+                divCourse.style.padding = "10px 0"
+                divCourse.style.borderBottom = "1px solid lightgrey"
+                divCourse.onmouseout = () => {
+                    divCourse.style.backgroundColor = "transparent"
                 }
-                divCurse.onmouseover = () => {
-                    divCurse.style.backgroundColor = "lightgrey"
+                divCourse.onmouseover = () => {
+                    divCourse.style.backgroundColor = "lightgrey"
                 }
 
 
-                let divCurseLink = document.createElement("a")
-                divCurseLink.href = cours.viewurl
-                divCurse.appendChild(divCurseLink)
+                let divCourseLink = document.createElement("a")
+                divCourseLink.href = cours.viewurl
+                divCourse.appendChild(divCourseLink)
 
-                let divCurseContent = document.createElement("div")
-                divCurseContent.textContent = cours.shortname
-                divCurseContent.style.padding = "10px 0 10px 30px"
+                let divCourseContent = document.createElement("div")
+                divCourseContent.textContent = cours.shortname
+                divCourseContent.style.padding = "10px 0 10px 30px"
 
-                divCurseLink.appendChild(divCurseContent)
+                divCourseLink.appendChild(divCourseContent)
 
-                divCurseMenu.appendChild(divCurse)
+                divCourseMenu.appendChild(divCourse)
             }
         }
 
@@ -76,15 +76,14 @@
                 let json = JSON.parse(response.responseText)[0]
                 console.log(json)
                 if (json.error === false) {
-                    appendCurses(json)
+                    appendCourses(json)
                 }
             }
         }
         //TODO; Store in localstorage as Cache
         GM_xmlhttpRequest(requestDetails);
 
-        
-        return divCurseMenu
+        return divCourseMenu
     }
 
     function init() {
@@ -102,15 +101,15 @@
         let divFlexRow = document.createElement("div")
         divFlexRow.style.display = "flex"
 
-        let divFlexItemCurseMenu = document.createElement("div")
-        divFlexItemCurseMenu.style.flex = "12%"
-        divFlexItemCurseMenu.appendChild(createCurseMenu())
+        let divFlexItemCourseMenu = document.createElement("div")
+        divFlexItemCourseMenu.style.flex = "12%"
+        divFlexItemCourseMenu.appendChild(createCourseMenu())
 
         let divFlexItemContent = document.createElement("div")
         divFlexItemContent.style.flex = "88%"
         divFlexItemContent.appendChild(divPage)
 
-        divFlexRow.appendChild(divFlexItemCurseMenu)
+        divFlexRow.appendChild(divFlexItemCourseMenu)
         divFlexRow.appendChild(divFlexItemContent)
 
         divPageWrapper.appendChild(divFlexRow)
