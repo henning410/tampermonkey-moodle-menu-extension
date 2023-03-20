@@ -55,7 +55,7 @@
                 divCourse.appendChild(divCourseLink)
 
                 let divCourseContent = document.createElement("div")
-                divCourseContent.textContent = cours.shortname
+                divCourseContent.innerHTML = cours.shortname
                 divCourseContent.style.padding = "10px 0 10px 30px"
 
                 divCourseLink.appendChild(divCourseContent)
