@@ -8,7 +8,4 @@ v1.0.0
 ## Installation
 
 1. Add Tampermonkey Extensions to your Browser: https://www.tampermonkey.net/
-2. Crate new Script
-3. Add Sourcecode from [script.js](script.js) into the new Tampermonkey Script
-4. Done :)
-
+2. Install script by clicking here: https://github.com/HSE-Codes/tampermonkey-moodle-menu-extension/raw/main/moodleMenu.user.js
