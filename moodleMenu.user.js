@@ -28,10 +28,13 @@
         divCourseMenuHead.style.width = "100%"
         divCourseMenuHead.style.textAlign = "center"
         divCourseMenuHead.style.borderBottom = "thin solid lightgrey"
+        divCourseMenuHead.style.backgroundColor = "#193058"
 
-        let h1CourseMenuHeadContent = document.createElement("h1")
+        let h1CourseMenuHeadContent = document.createElement("a")
         h1CourseMenuHeadContent.textContent = "Meine Kurse"
         h1CourseMenuHeadContent.style.fontWeight = "bold"
+        h1CourseMenuHeadContent.style.color = "white"
+        h1CourseMenuHeadContent.style.fontSize = "2em"
 
         divCourseMenuHead.appendChild(h1CourseMenuHeadContent)
         divCourseMenu.appendChild(divCourseMenuHead)
